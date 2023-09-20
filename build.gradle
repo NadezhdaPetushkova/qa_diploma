@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "io.freefair.lombok" version "5.3.0"
+    id "io.freefair.lombok" version "8.1.0"
     id 'io.qameta.allure' version '2.11.2'
 }
 
@@ -12,9 +12,9 @@ compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 allure {
-    version = '2.20.1'
+    version = '2.24.0'
     useJUnit5 {
-        version = '2.20.1'
+        version = '2.24.0'
     }
 }
 
@@ -23,22 +23,23 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'io.rest-assured:rest-assured:4.3.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
+    testImplementation 'io.rest-assured:rest-assured:4.3.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
-    testImplementation 'com.mysql:mysql-connector-j:8.0.31'
-    testImplementation 'org.postgresql:postgresql:42.5.1'
-    testImplementation 'com.codeborne:selenide:5.19.0'
+    testImplementation 'com.mysql:mysql-connector-j:8.0.33'
+    testImplementation 'org.postgresql:postgresql:42.6.0'
+    testImplementation 'com.codeborne:selenide:6.17.2'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
     implementation 'io.qameta.allure:allure-selenide:2.20.1'
 }
-
 test {
     useJUnitPlatform()
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
-    systemProperty 'dbUrl', System.getProperty('db.url', 'jdbc:mysql://185.119.57.126:3306/app')
-    systemProperty 'dbUsername', System.getProperty('dbUsername', 'app')
-    systemProperty 'dbPassword', System.getProperty('dbPassword', 'pass')
+    systemProperty 'db.url', System.getProperty('db.url', 'jdbc:mysql://localhost:3306/app')
+    systemProperty 'db.user', System.getProperty('db.user', 'app')
+    systemProperty 'db.password', System.getProperty('db.password', 'pass')
+    systemProperty 'SUT.url', System.getProperty('SUT.url', 'http://localhost:8080/')
 }
