@@ -27,7 +27,7 @@
 
 2) Убедиться в готовности системы. Приложение должно быть доступно по адресу: `http://localhost:8080/`;
 
-3) В новой вкладке терминала запустить тесты командой: `.\gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"`  ;
+3) В новой вкладке терминала запустить тесты командой: `./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"`  ;
 
 4) Для создания отчета запустить команду: `./gradlew allureServe`,`./gradlew allureReport`
 
