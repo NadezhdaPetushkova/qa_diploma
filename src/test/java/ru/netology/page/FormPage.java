@@ -101,4 +101,11 @@ public class FormPage {
     public void checkErrorNotifyIfInvalidCVC() {
         errorNotify(cvcField).shouldBe(visible, text("Неверный формат"));
     }
+    public void checkErrorIfEmptyAllFields() {
+        errorNotify(cvcField).shouldBe(visible, text("Поле обязательно для заполнения"));
+        errorNotify(holderField).shouldBe(visible, text("Поле обязательно для заполнения"));
+        errorNotify(yearField).shouldBe(visible, text("Поле обязательно для заполнения"));
+        errorNotify(monthField).shouldBe(visible, text("Поле обязательно для заполнения"));
+        errorNotify(numberField).shouldBe(visible, text("Поле обязательно для заполнения"));
+    }
 }

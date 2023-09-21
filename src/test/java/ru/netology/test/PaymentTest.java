@@ -42,7 +42,7 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedPaymentStatus("APPROVED");;
+        SQLHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
@@ -78,8 +78,8 @@ public class PaymentTest {
     @Test
     void shouldGetErrorIfShortHolderName() {
         var mainPage = new MainPage();
-        var cardInfo = DataHelper.getValidCardWithShortName();
-        var formPage = mainPage.openCreditForm();
+        var cardInfo = DataHelper.getInvalidCardWithShortName();
+        var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkErrorNotifyIfInvalidHolder();
     }
@@ -178,20 +178,20 @@ public class PaymentTest {
     void shouldSucceedIfExpirationDateIs4YearsFromCurrent() {
         var mainPage = new MainPage();
         var cardInfo = DataHelper.getValidCardWithPlus4YearsFromCurrent();
-        var formPage = mainPage.openCreditForm();
+        var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedCreditStatus("APPROVED");
+        SQLHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
     void shouldSucceedIfExpirationDateIs5YearsFromCurrent() {
         var mainPage = new MainPage();
         var cardInfo = DataHelper.getValidCardWithPlus5YearsFromCurrent();
-        var formPage = mainPage.openCreditForm();
+        var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedCreditStatus("APPROVED");
+        SQLHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
@@ -222,12 +222,13 @@ public class PaymentTest {
     }
 
     @Test
-    void shouldGetErrorNotifyIfCyrillicHolderName() {
+    void shouldSuccessIfCyrillicHolderName() {
         var mainPage = new MainPage();
-        var cardInfo = DataHelper.getInvalidCardWithCyrillicName();
+        var cardInfo = DataHelper.getValidCardWithCyrillicName();
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
-        formPage.checkErrorNotifyIfInvalidHolder();
+        formPage.checkSuccessNotification();
+        SQLHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
@@ -273,5 +274,13 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkErrorNotifyIfInvalidCVC();
+    }
+    @Test
+    void shouldGetErrorIfAllFieldsEmpty() {
+        var mainPage = new MainPage();
+        var cardInfo = DataHelper.getInfoIfEmptyAllFields();
+        var formPage = mainPage.openPaymentForm();
+        formPage.setValues(cardInfo);
+        formPage.checkErrorIfEmptyAllFields();
     }
 }

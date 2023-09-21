@@ -116,9 +116,9 @@ public class DataHelper {
                 generateValidHolder(), generateValidCVC());
     }
 
-    public static CardInfo getInvalidCardWithCyrillicName() {
+    public static CardInfo getValidCardWithCyrillicName() {
         return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
-                generateInvalidHolderInCyrillic(), generateValidCVC());
+                generateValidHolderInCyrillic(), generateValidCVC());
     }
 
     public static CardInfo getValidCardWithHyphenatedName() {
@@ -126,9 +126,9 @@ public class DataHelper {
                 generateValidHolderWithHyphenatedName(), generateValidCVC());
     }
 
-    public static CardInfo getValidCardWithShortName() {
+    public static CardInfo getInvalidCardWithShortName() {
         return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(2),
-                generateValidHolderWithShortName(), generateValidCVC());
+                generateInvalidHolderWithShortName(), generateValidCVC());
     }
 
     public static CardInfo getInvalidCardWithNumbersInName() {
@@ -149,6 +149,10 @@ public class DataHelper {
     public static CardInfo getInvalidCVCWithLetters() {
         return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
                 generateValidHolder(), generateInvalidCVCWithLetters());
+    }
+
+    public static CardInfo getInfoIfEmptyAllFields() {
+        return new CardInfo("", "", "", "", "");
     }
 
     public static String generateNumberWith15Digits() {
@@ -183,10 +187,10 @@ public class DataHelper {
         return faker.name().firstName().toUpperCase() + " " + faker.name().lastName().toUpperCase() + "-"
                 + faker.name().lastName().toUpperCase();
     }
-    public static String generateValidHolderWithShortName() {
+    public static String generateInvalidHolderWithShortName() {
         return faker.lorem().characters(1);
     }
-    public static String generateInvalidHolderInCyrillic() {
+    public static String generateValidHolderInCyrillic() {
         return fakerCyrillic.name().firstName().toUpperCase() + " " + fakerCyrillic.name().lastName().toUpperCase();
     }
 

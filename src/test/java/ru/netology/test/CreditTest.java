@@ -88,7 +88,7 @@ public class CreditTest {
     void shouldGetErrorNotifyIfExpirationDateIs6YearsFromCurrent() {
         var mainPage = new MainPage();
         var cardInfo = DataHelper.getCardWithPlus6YearsFromCurrent();
-        var formPage = mainPage.openPaymentForm();
+        var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkErrorNotifyIfInvalidYear();
     }
@@ -106,7 +106,7 @@ public class CreditTest {
     @Test
     void shouldGetErrorIfShortHolderName() {
         var mainPage = new MainPage();
-        var cardInfo = DataHelper.getValidCardWithShortName();
+        var cardInfo = DataHelper.getInvalidCardWithShortName();
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkErrorNotifyIfInvalidHolder();
@@ -231,12 +231,13 @@ public class CreditTest {
     }
 
     @Test
-    void shouldGetErrorNotifyIfCyrillicHolderName() {
+    void shouldSuccessIfCyrillicHolderName() {
         var mainPage = new MainPage();
-        var cardInfo = DataHelper.getInvalidCardWithCyrillicName();
+        var cardInfo = DataHelper.getValidCardWithCyrillicName();
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
-        formPage.checkErrorNotifyIfInvalidHolder();
+        formPage.checkSuccessNotification();
+        SQLHelper.expectedCreditStatus("APPROVED");
     }
 
     @Test
@@ -273,5 +274,13 @@ public class CreditTest {
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkErrorNotifyIfInvalidCVC();
+    }
+    @Test
+    void shouldGetErrorIfAllFieldsEmpty() {
+        var mainPage = new MainPage();
+        var cardInfo = DataHelper.getInfoIfEmptyAllFields();
+        var formPage = mainPage.openCreditForm();
+        formPage.setValues(cardInfo);
+        formPage.checkErrorIfEmptyAllFields();
     }
 }
