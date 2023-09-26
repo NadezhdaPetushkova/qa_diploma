@@ -25,12 +25,12 @@ public class DataHelper {
     }
 
     public static CardInfo getValidApprovedCard() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(2), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(2), generateYear(1),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getValidDeclinedCard() {
-        return new CardInfo("4444 4444 4444 4442", generateMonth(3), generateYear(1),
+        return new CardInfo(declinedCard(), generateMonth(3), generateYear(1),
                 generateValidHolder(), generateValidCVC());
     }
 
@@ -40,19 +40,19 @@ public class DataHelper {
     }
 
     public static CardInfo getInfoIfEmptyCardMonth() {
-        return new CardInfo("4444 4444 4444 4441", "", generateYear(1),
+        return new CardInfo(approvedCard(), "", generateYear(1),
                 generateValidHolder(), generateValidCVC());
     }
     public static CardInfo getInfoIfEmptyCardYear() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), "",
+        return new CardInfo(approvedCard(), generateMonth(3), "",
                 generateValidHolder(), generateValidCVC());
     }
     public static CardInfo getInfoIfEmptyCardHolder() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(1),
                 "", generateValidCVC());
     }
     public static CardInfo getInfoIfEmptyCardCVC() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(1),
                 generateValidHolder(), "");
     }
 
@@ -77,77 +77,77 @@ public class DataHelper {
     }
 
     public static CardInfo getInvalidCardWithMonthIf00() {
-        return new CardInfo("4444 4444 4444 4441", "00", generateYear(1),
+        return new CardInfo(approvedCard(), "00", generateYear(1),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getInvalidCardWithMonthIf13() {
-        return new CardInfo("4444 4444 4444 4441", "13", generateYear(1),
+        return new CardInfo(approvedCard(), "13", generateYear(1),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getValidCardWithCurrentMonthAndCurrentYear() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(0), generateYear(0),
+        return new CardInfo(approvedCard(), generateMonth(0), generateYear(0),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getInvalidCardWithExpiredMonth() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(-1), generateYear(0),
+        return new CardInfo(approvedCard(), generateMonth(-1), generateYear(0),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getValidCardWithPlus4YearsFromCurrent() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(0), generateYear(4),
+        return new CardInfo(approvedCard(), generateMonth(0), generateYear(4),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getValidCardWithPlus5YearsFromCurrent() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(0), generateYear(5),
+        return new CardInfo(approvedCard(), generateMonth(0), generateYear(5),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getCardWithPlus6YearsFromCurrent() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(0), generateYear(6),
+        return new CardInfo(approvedCard(), generateMonth(0), generateYear(6),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getInvalidCardWithExpiredYear() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(0), generateYear(-1),
+        return new CardInfo(approvedCard(), generateMonth(0), generateYear(-1),
                 generateValidHolder(), generateValidCVC());
     }
 
     public static CardInfo getValidCardWithCyrillicName() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(1),
                 generateValidHolderInCyrillic(), generateValidCVC());
     }
 
     public static CardInfo getValidCardWithHyphenatedName() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(1),
                 generateValidHolderWithHyphenatedName(), generateValidCVC());
     }
 
     public static CardInfo getInvalidCardWithShortName() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(2),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(2),
                 generateInvalidHolderWithShortName(), generateValidCVC());
     }
 
     public static CardInfo getInvalidCardWithNumbersInName() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(1),
                 generateInvalidHolderWithDigits(), generateValidCVC());
     }
 
     public static CardInfo getInvalidCardWithSpecialSymbolsInName() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(1),
                 generateInvalidHolderWithSymbols(), generateValidCVC());
     }
 
     public static CardInfo getInvalidCVCWith2Digits() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(1),
                 generateValidHolder(), generateInvalidCVCWith2Digits());
     }
 
     public static CardInfo getInvalidCVCWithLetters() {
-        return new CardInfo("4444 4444 4444 4441", generateMonth(3), generateYear(1),
+        return new CardInfo(approvedCard(), generateMonth(3), generateYear(1),
                 generateValidHolder(), generateInvalidCVCWithLetters());
     }
 

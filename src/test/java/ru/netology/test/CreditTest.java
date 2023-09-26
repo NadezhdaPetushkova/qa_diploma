@@ -5,11 +5,12 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
-import ru.netology.data.SQLHelper;
+import ru.netology.data.SqlHelper;
 import ru.netology.page.MainPage;
 
 import static com.codeborne.selenide.Selenide.*;
-import static ru.netology.data.SQLHelper.cleanDatabase;
+import static ru.netology.data.SqlHelper.cleanDatabase;
+import static ru.netology.data.SqlHelper.sut;
 
 public class CreditTest {
 
@@ -22,11 +23,10 @@ public class CreditTest {
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
     }
-
     @BeforeEach
     public void setUp() {
         Configuration.holdBrowserOpen = true;
-        open("http://localhost:8080");
+        open(sut);
     }
 
     @AfterEach
@@ -41,7 +41,7 @@ public class CreditTest {
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedCreditStatus("APPROVED");
+        SqlHelper.expectedCreditStatus("APPROVED");
     }
 
     @Test
@@ -51,7 +51,7 @@ public class CreditTest {
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkErrorNotification();
-        SQLHelper.expectedCreditStatus("DECLINED");
+        SqlHelper.expectedCreditStatus("DECLINED");
     }
 
     @Test
@@ -61,7 +61,7 @@ public class CreditTest {
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedCreditStatus("APPROVED");
+        SqlHelper.expectedCreditStatus("APPROVED");
     }
 
     @Test
@@ -71,7 +71,7 @@ public class CreditTest {
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedCreditStatus("APPROVED");
+        SqlHelper.expectedCreditStatus("APPROVED");
     }
 
     @Test
@@ -81,7 +81,7 @@ public class CreditTest {
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedCreditStatus("APPROVED");
+        SqlHelper.expectedCreditStatus("APPROVED");
     }
 
     @Test
@@ -100,7 +100,7 @@ public class CreditTest {
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedCreditStatus("APPROVED");
+        SqlHelper.expectedCreditStatus("APPROVED");
     }
 
     @Test
@@ -237,7 +237,7 @@ public class CreditTest {
         var formPage = mainPage.openCreditForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedCreditStatus("APPROVED");
+        SqlHelper.expectedCreditStatus("APPROVED");
     }
 
     @Test

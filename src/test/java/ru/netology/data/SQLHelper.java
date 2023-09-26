@@ -8,14 +8,15 @@ import java.sql.DriverManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SQLHelper {
+public class SqlHelper {
 
     private static String url = System.getProperty("db.url");
     private static String user = System.getProperty("db.user");
     private static String pass = System.getProperty("db.password");
+    public static String sut = System.getProperty("sut.url");
     private static QueryRunner runner = new QueryRunner();
 
-    private SQLHelper() {
+    private SqlHelper() {
     }
 
     @SneakyThrows
@@ -26,25 +27,25 @@ public class SQLHelper {
     @SneakyThrows
     public static String getPaymentStatus() {
         var connection = getConnect();
-        var SQLQuery = "SELECT status FROM payment_entity ORDER BY created DESC";
-        return runner.query(connection, SQLQuery, new ScalarHandler<String>());
+        var SqlQuery = "SELECT status FROM payment_entity ORDER BY created DESC limit 1";
+        return runner.query(connection, SqlQuery, new ScalarHandler<String>());
     }
 
 
-    public static void expectedPaymentStatus(String status) {
-        assertEquals(status, getPaymentStatus());
+    public static void expectedPaymentStatus(String expectedStatus) {
+        assertEquals(expectedStatus, getPaymentStatus());
     }
 
     @SneakyThrows
     public static String getCreditStatus() {
         var connection = getConnect();
-        var SQLQuery = "SELECT status FROM credit_request_entity ORDER BY created DESC";
-        return runner.query(connection, SQLQuery, new ScalarHandler<String>());
+        var SqlQuery = "SELECT status FROM credit_request_entity ORDER BY created DESC limit 1";
+        return runner.query(connection, SqlQuery, new ScalarHandler<String>());
     }
 
 
-    public static void expectedCreditStatus(String status) {
-        assertEquals(status, getCreditStatus());
+    public static void expectedCreditStatus(String expectedStatus) {
+        assertEquals(expectedStatus, getCreditStatus());
     }
 
         @SneakyThrows

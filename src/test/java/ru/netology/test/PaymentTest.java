@@ -5,11 +5,12 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
-import ru.netology.data.SQLHelper;
+import ru.netology.data.SqlHelper;
 import ru.netology.page.MainPage;
 
 import static com.codeborne.selenide.Selenide.*;
-import static ru.netology.data.SQLHelper.cleanDatabase;
+import static ru.netology.data.SqlHelper.cleanDatabase;
+import static ru.netology.data.SqlHelper.sut;
 
 
 public class PaymentTest {
@@ -27,7 +28,7 @@ public class PaymentTest {
     @BeforeEach
     public void setUp() {
         Configuration.holdBrowserOpen = true;
-        open("http://localhost:8080");
+        open(sut);
     }
 
     @AfterEach
@@ -42,7 +43,7 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedPaymentStatus("APPROVED");
+        SqlHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
@@ -52,7 +53,7 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkErrorNotification();
-        SQLHelper.expectedPaymentStatus("DECLINED");
+        SqlHelper.expectedPaymentStatus("DECLINED");
     }
 
     @Test
@@ -62,7 +63,7 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedPaymentStatus("APPROVED");
+        SqlHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
@@ -72,7 +73,7 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedPaymentStatus("APPROVED");
+        SqlHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
@@ -181,7 +182,7 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedPaymentStatus("APPROVED");
+        SqlHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
@@ -191,7 +192,7 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedPaymentStatus("APPROVED");
+        SqlHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
@@ -228,7 +229,7 @@ public class PaymentTest {
         var formPage = mainPage.openPaymentForm();
         formPage.setValues(cardInfo);
         formPage.checkSuccessNotification();
-        SQLHelper.expectedPaymentStatus("APPROVED");
+        SqlHelper.expectedPaymentStatus("APPROVED");
     }
 
     @Test
